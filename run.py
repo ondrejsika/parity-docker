@@ -40,6 +40,10 @@ rm_parser = root_subparsers.add_parser('rm')
 rm_parser.add_argument('instance', type=_port_shift, default=0)
 rm_parser.add_argument('chain', type=_chain)
 
+console_parser = root_subparsers.add_parser('console')
+console_parser.add_argument('instance', type=_port_shift, default=0)
+console_parser.add_argument('chain', type=_chain)
+
 
 def _system(command, args):
     if args.dry:
@@ -62,9 +66,15 @@ def run(args):
 def rm(args):
     _system('docker rm -f parity-{instance}-{chain}'.format(chain=args.chain, instance=args.instance), args)
 
+
+def console(args):
+    _system('docker exec -ti parity-{instance}-{chain} /app/geth attach http://127.0.0.1:8545'.format(chain=args.chain, instance=args.instance), args)
+
+
 args = root_parser.parse_args()
 {
     'build': build,
     'run': run,
     'rm': rm,
+    'console': console,
 }[args.command0](args)
