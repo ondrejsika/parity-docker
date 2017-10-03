@@ -32,12 +32,12 @@ build_parser = root_subparsers.add_parser('build')
 run_parser = root_subparsers.add_parser('run')
 run_parser.add_argument('-f', '--foreground', action='store_true')
 run_parser.add_argument('-n', '--no-ports', action='store_true')
-run_parser.add_argument('-s', '--port-shift', type=_port_shift, default=0)
 run_parser.add_argument('-d', '--data', type=_path)
+run_parser.add_argument('instance', type=_port_shift, default=0)
 run_parser.add_argument('chain', type=_chain)
 
 rm_parser = root_subparsers.add_parser('rm')
-rm_parser.add_argument('-s', '--port-shift', type=_port_shift, default=0)
+rm_parser.add_argument('instance', type=_port_shift, default=0)
 rm_parser.add_argument('chain', type=_chain)
 
 
@@ -53,16 +53,14 @@ def build(args):
 
 
 def run(args):
-    ports = '-p {shift}8180:8180 -p {shift}8545:8545 -p {shift}8546:8546'.format(shift=args.port_shift) if not args.no_ports else ''
+    ports = '-p {shift}8180:8180 -p {shift}8545:8545 -p {shift}8546:8546'.format(shift=args.instance) if not args.no_ports else ''
     foreground = '--rm' if args.foreground else '-d'
-    shift = '-%s' % args.port_shift if args.port_shift else ''
     volumes = '-v {path}:/ethereum'.format(path=args.data) if args.data else ''
-    _system('docker run {foreground} {ports} {volumes} --name parity-{chain}{shift} pool/parity {chain}'.format(ports=ports, chain=args.chain, shift=shift, foreground=foreground, volumes=volumes), args)
+    _system('docker run {foreground} {ports} {volumes} --name parity-{instance}-{chain} pool/parity {chain}'.format(ports=ports, chain=args.chain, instance=args.instance, foreground=foreground, volumes=volumes), args)
 
 
 def rm(args):
-    shift = '-%s' % args.port_shift if args.port_shift else ''
-    _system('docker rm -f parity-{chain}{shift}'.format(chain=args.chain, shift=shift), args)
+    _system('docker rm -f parity-{instance}-{chain}'.format(chain=args.chain, instance=args.instance), args)
 
 args = root_parser.parse_args()
 {
