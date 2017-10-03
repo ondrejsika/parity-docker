@@ -20,6 +20,8 @@ port = 8000
 [parity]
 # Local Development Chain
 chain = "/app/genesis-regtest.json"
+# Blockchain and settings will be stored in /ethereum.
+base_path = "/ethereum"
 
 [ui]
 #  Wallet will listen for connections on IP 0.0.0.0.

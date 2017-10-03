@@ -17,6 +17,10 @@ cors = "*"
 # Dapps Server will be running on port 8000.
 port = 8000
 
+[parity]
+# Blockchain and settings will be stored in /ethereum.
+base_path = "/ethereum"
+
 [ui]
 #  Wallet will listen for connections on IP 0.0.0.0.
 interface = "0.0.0.0"
