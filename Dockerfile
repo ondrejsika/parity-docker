@@ -1,4 +1,4 @@
-FROM parity/parity:v1.7.10
+FROM parity/parity:v1.7.11
 MAINTAINER Ondrej Sika <ondrej@ondrejsika.com>
 COPY . /app
 VOLUME /ethereum
