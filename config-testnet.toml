@@ -1,0 +1,44 @@
+# This config should be placed in following path:
+#   ~/.local/share/io.parity.ethereum/config.toml
+
+[network]
+# Parity will listen for connections on port 30305.
+port = 30303
+
+[rpc]
+# JSON-RPC over HTTP will be accessible on port 8645.
+port = 8545
+#  JSON-RPC will be listening for connections on IP 0.0.0.0.
+interface = "0.0.0.0"
+# Allows Cross-Origin Requests from domain '*'.
+cors = "*"
+
+[dapps]
+# Dapps Server will be running on port 8000.
+port = 8000
+
+[parity]
+# Ropsten Test Network
+chain = "ropsten"
+# Blockchain and settings will be stored in /ethereum.
+base_path = "/ethereum"
+
+[ui]
+#  Wallet will listen for connections on IP 0.0.0.0.
+interface = "0.0.0.0"
+
+[websockets]
+# JSON-RPC over WebSockets will be accessible on port 8645.
+port = 8546
+#  JSON-RPC will be listening for connections on IP 0.0.0.0.
+interface = "0.0.0.0"
+
+[mining]
+# Account address to receive reward when block is mined.
+author = "0xf47828507c5e20d8fc93d823bcae084443131922"
+
+[footprint]
+# Prune old state data. Maintains journal overlay - fast but extra 50MB of memory used.
+pruning = "fast"
+# Increase performance on HDD.
+db_compaction = "hdd"

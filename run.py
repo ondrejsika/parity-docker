@@ -5,8 +5,8 @@ import os
 
 
 def _chain(val):
-    if val not in ('livenet', 'regtest'):
-        raise Exception('Chain must be "livenet" or "regtest"')
+    if val not in ('livenet', 'testnet', 'regtest'):
+        raise Exception('Chain must be "livenet" or "testnet" or "regtest"')
     return val
 
 
