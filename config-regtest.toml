@@ -6,6 +6,8 @@
 port = 30303
 
 [rpc]
+# Only selected APIs will be exposed over this interface.
+apis = ["web3", "eth", "net", "parity", "traces", "rpc", "secretstore", "personal", "parity_accounts"]
 # JSON-RPC over HTTP will be accessible on port 8645.
 port = 8545
 #  JSON-RPC will be listening for connections on IP 0.0.0.0.
