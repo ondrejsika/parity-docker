@@ -13,7 +13,7 @@ port = 8545
 #  JSON-RPC will be listening for connections on IP 0.0.0.0.
 interface = "0.0.0.0"
 # Allows Cross-Origin Requests from domain '*'.
-cors = "*"
+cors = ["*"]
 
 [dapps]
 # Dapps Server will be running on port 8000.
